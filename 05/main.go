@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"main/25"
 	"math/rand"
 	"os"
 	"strconv"
@@ -27,12 +26,14 @@ func main() {
 		}
 	}()
 
-	go func(){
-		for {
-			fmt.Println(<-ch)
+	t := time.NewTimer(time.Duration(duration))
+
+	for {
+		select {
+		case x := <-ch:
+			fmt.Println(x)
+		case <-t.C:
+			return
 		}
-	}()
-
-
-	twentyfive.Sleep2(time.Duration(duration))
+	}
 }

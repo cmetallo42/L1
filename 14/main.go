@@ -5,17 +5,15 @@ import (
 	"reflect"
 )
 
-type types interface {
-	i() int
-	s() string
-	b() bool
-	ch() chan any
-}
-
 func main() {
-	fmt.Println(reflect.TypeOf(types.i))
-	fmt.Println(reflect.TypeOf(types.s))
-	fmt.Println(reflect.TypeOf(types.b))
-	fmt.Println(reflect.TypeOf(types.ch))
+	i := any(int(1))
+	s := any("hello world")
+	b := any(true)
+	ca := any(make(chan any))
+
+	fmt.Println(reflect.TypeOf(i))
+	fmt.Println(reflect.TypeOf(s))
+	fmt.Println(reflect.TypeOf(b))
+	fmt.Println(reflect.TypeOf(ca))
 
 }
